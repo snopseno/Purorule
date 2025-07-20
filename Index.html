@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сайт с изображениями</title>
+    <title>Галерея изображений</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -43,8 +43,8 @@
     </style>
 </head>
 <body>
-    <h1>Мои изображения</h1>
-    <button onclick="showNextImage()">Показать следующее изображение</button>
+    <h1>Галерея изображений</h1>
+    <button onclick="showNextImage()">Следующее изображение</button>
     <div id="imageContainer">
         <img id="displayImage" src="" alt="Изображение">
     </div>
@@ -52,24 +52,17 @@
         const images = [
             'https://picsum.photos/300/200?random=1',
             'https://picsum.photos/300/200?random=2',
-            'https://picsum.photos/300/200?random=3',
-            'https://app.rule34.dev/hentai/0/tiger_shark_(changed)+score:%3E50?id=15402632256',
+            'https://picsum.photos/300/200?random=3'
             // Замените на прямые ссылки на ваши изображения
         ];
         let currentIndex = 0;
 
         function showNextImage() {
             const image = document.getElementById('displayImage');
-            if (currentIndex < images.length) {
-                image.src = images[currentIndex];
-                image.style.display = 'block';
-                currentIndex++;
-            } else {
-                currentIndex = 0; // Зацикливание
-                image.src = images[currentIndex];
-                currentIndex++;
-            }
+            image.src = images[currentIndex];
+            image.style.display = 'block';
+            currentIndex = (currentIndex + 1) % images.length; // Зацикливание
         }
     </script>
 </body>
-  </html>
+</html>
