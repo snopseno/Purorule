@@ -1,69 +1,83 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puro rule</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        #imageContainer {
-            margin-top: 20px;
-            max-width: 500px;
-        }
-        img {
-            max-width: 100%;
-            display: none;
-            border: 2px solid #333;
-            border-radius: 5px;
-        }
-        h1 {
-            color: #333;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ошибка авторизации</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1920&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
+    }
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+      animation: twinkle 3s infinite ease-in-out;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 0.2; transform: scale(1.2); }
+    }
+    .pulse {
+      animation: pulse 2s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .container {
+      background: linear-gradient(135deg, rgba(0, 0, 50, 0.8), rgba(0, 0, 100, 0.5));
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+    }
+    .button {
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+      box-shadow: 0 4px 15px rgba(0, 114, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 114, 255, 0.7);
+    }
+  </style>
 </head>
-<body>
-    <h1>Puro rule</h1>
-    <button onclick="showNextImage()">Next image</button>
-    <div id="imageContainer">
-        <img id="displayImage" src="" alt="Изображение">
-    </div>
-    <script>
-        const images = [
-            'https://picsum.photos/300/200?random=1',
-            'https://i.imgur.com/3q1e3Js.png',
-            'https://rule34.xxx//samples/1399/sample_b9ede7f0ec76f2325e08d0d5d875ec57.jpg?13069339',
-            'https://stalcraft.wiki/items/weapon/g4v16'
-            // Замените на прямые ссылки на ваши изображения
-        ];
-        let currentIndex = 0;
-
-        function showNextImage() {
-            const image = document.getElementById('displayImage');
-            image.src = images[currentIndex];
-            image.style.display = 'block';
-            currentIndex = (currentIndex + 1) % images.length; // Зацикливание
-        }
-    </script>
+<body class="flex items-center justify-center min-h-screen text-white">
+  <div class="stars"></div>
+  <div class="container p-10 rounded-xl shadow-2xl text-center max-w-lg">
+    <h1 class="text-4xl font-bold text-red-400 mb-4 pulse">Ошибка авторизации</h1>
+    <p class="text-xl text-gray-200 mb-8">Авторизация прошла неуспешно. Попробуйте снова через 30 минут, космический путешественник!</p>
+    <a href="https://discord.com" class="button inline-block text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition transform">Вернуться к Discord</a>
+  </div>
+  <script>
+    // Генерация звёзд
+    const starsContainer = document.querySelector('.stars');
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      const size = Math.random() * 4 + 1;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 3}s`;
+      starsContainer.appendChild(star);
+    }
+  </script>
 </body>
-  </html>
+</html>
